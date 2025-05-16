@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Tahoma, "Sans Serif Collection";
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: lightsteelblue;
+    border: none;
+    border-radius: 5px;
+}
+
+a {
+    font-size: 1rem;
+    color: blue;
+    font-family: Algerian, "Sans Serif Collection";
+}
+a:hover {
+    text-decoration: none;
+}
