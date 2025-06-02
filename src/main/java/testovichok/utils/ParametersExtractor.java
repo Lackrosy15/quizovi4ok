@@ -1,10 +1,7 @@
 package testovichok.utils;
 
 import jakarta.servlet.http.HttpServletRequest;
-import testovichok.entityes.LoginCredentials;
-import testovichok.entityes.QuizParameters;
-import testovichok.entityes.RegistrationCredentials;
-import testovichok.entityes.User;
+import testovichok.entityes.*;
 
 public class ParametersExtractor {
     public LoginCredentials getLoginCredentials(HttpServletRequest req) {
@@ -17,5 +14,9 @@ public class ParametersExtractor {
 
     public QuizParameters getQuizParameters(HttpServletRequest req) {
         return new QuizParameters(req.getParameter("quizName"), req.getParameter("category"), req.getParameter("imgUrl"), (User) req.getSession().getAttribute("user"));
+    }
+
+    public ChangePasswordCredentials getChangePasswordParameters(HttpServletRequest req) {
+        return new ChangePasswordCredentials(req.getParameter("currentPassword"), req.getParameter("newPassword"));
     }
 }

@@ -1,1 +1,23 @@
-[{"id":"17ac9032-3a8a-46c0-aecc-9a3c47b02d27","name":"Виктория","login":"rodionova.viktoriya.99@bk.ru","password":"$2a$10$N0Yoow.H63eVn0Hs1MGaRONEW4Mlf6TSRlVBhDE71V5q.W8GENHW2"},{"id":"eee19c14-b748-4417-b7c7-c4503a8b3b02","name":"Виктория","login":"rdviktoriya.99@gmail.com","password":"$2a$10$PgrBtaN3HTxPyampbFoHSOVx3g8sI4GzIt1FmoEVB.nxFAadEzrP."},{"id":"b92ca739-8a5e-440b-946c-9bd245f95b5f","name":"Test user","login":"rodionova.viktoriya.999@bk.ru","password":"$2a$10$KUPuIiWWlIUSjf6.dMbmLeCLKxWP4YQGYQY35FoO6SOZqiB4TSg/C"},{"id":"be2ce2cf-b0bf-4b20-9ca3-b5496ad9b909","name":"Виктория","login":"rodionova11.viktoriya.99@bk.ru","password":"$2a$10$Bo2O2Su8hskPkbhh7jO6JOnX0SLZ6af3kkIhmC4644knJImKAzQ2u"},{"id":"9c1f95ec-fd5f-4c3a-82ae-9a282abb1708","name":"Тест","login":"viktoriamamaika@gmail.com","password":"$2a$10$wlrxtn3r1rp022PJcJOIlOLeYFcWOvffKoXli5CqZIFQSilN8ha8K"}]
+[
+  {
+    "id": "01710199-bb83-4518-841d-dff14a3211e1",
+    "name": "Виктория",
+    "login": "rodionova.viktoriya.99@bk.ru",
+    "password": "$2a$10$0HVyDEZQYBqgft2CewRZo..jTdam0qNQDCfiSb7Jhfc9x34bPHll6",
+    "role": null
+  },
+  {
+    "id": "8f79ff71-9207-4c19-83c8-02e73e2205a6",
+    "name": "Тест",
+    "login": "testUser@bk.ru",
+    "password": "$2a$10$sNcGfPMv9zzcQCp2Deo6bOY3AHYhJ/t8Ps3jhsm0h6d.RvBti5V4e",
+    "role": null
+  },
+  {
+    "id": "3d14b478-59ab-40c0-88be-e99bb8506cff",
+    "name": "Виктория",
+    "login": "rodionova.viktoriya@bk.ru",
+    "password": "$2a$10$Vg0AWFYsOdkbBLLFtL56EuYeNr1inOIIBuO2Z/YCZx63K9KHqSdK6",
+    "role": "USER"
+  }
+]

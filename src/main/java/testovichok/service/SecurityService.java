@@ -10,4 +10,6 @@ public class SecurityService {
     public static String hashPassword(String password) {
         return passwordEncoder.encode(password);
     }
+
+
 }

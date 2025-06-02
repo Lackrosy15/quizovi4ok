@@ -3,12 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тестовичок</title>
+    <title>Главная | Премиум сервис</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1>Добро пожаловать в Тестовичок!</h1>
-    <div><button onclick="location.href='/registration'">Зарегистрироваться</button></div>
-    <div><a href="/login">У меня уже есть аккаунт</a></div>
+<header>
+    <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4361ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="logo-text">Тестовичок</span>
+    </div>
+    <nav class="nav-auth">
+        <a href="/login" class="nav-link">Войти</a>
+        <a href="/registration" class="btn">Регистрация</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Добро пожаловать в <span>Тестовичок!</span></h1>
+            <p class="hero-text">Наш сервис предоставляет возможности для создания любых тестов и квизов по вашим темам</p>
+
+            <div class="hero-actions">
+                <a href="/registration" class="btn btn-large">Регистрация</a>
+                <div class="login-link">
+                    Уже есть аккаунт? <a href="/login">Войти</a>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Интуитивный интерфейс</h3>
+                    <p class="feature-text">Простое и понятное управление всеми функциями сервиса</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Командная работа</h3>
+                    <p class="feature-text">Эффективное взаимодействие с вашей командой</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Мощные инструменты</h3>
+                    <p class="feature-text">Все необходимое для продуктивной работы в одном месте</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="" alt="Демонстрация интерфейса">
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-links">
+        <a href="#" class="footer-link">О нас</a>
+        <a href="#" class="footer-link">Контакты</a>
+    </div>
+    <p class="copyright">© 2025 Премиум сервис. Все права защищены.</p>
+</footer>
+
+<script>
+    // Анимация при наведении на кнопки
+    document.querySelectorAll('.btn').forEach(function(btn) {
+        btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Анимация карточек возможностей
+    document.querySelectorAll('.feature-card').forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+</script>
 </body>
 </html>

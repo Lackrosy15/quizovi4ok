@@ -1,16 +1,21 @@
-package testovichok.servlets;
+package testovichok.servlets.auth;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import testovichok.service.AuthenticateService;
+import testovichok.service.QuizService;
+import testovichok.utils.ParametersExtractor;
 
-@WebServlet("/menu")
-public class MenuServlet extends HttpServlet {
+import java.io.IOException;
+
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
     private AuthenticateService authenticateService;
 
     @Override
@@ -19,10 +24,11 @@ public class MenuServlet extends HttpServlet {
         authenticateService = (AuthenticateService) config.getServletContext().getAttribute("AuthenticateService");
     }
 
+
     @SneakyThrows
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        req.getServletContext().setAttribute("onlineUsers", authenticateService.getOnlineUsersSet());
-        req.getRequestDispatcher("menu.jsp").forward(req, resp);
+        authenticateService.logoutUser(req);
+        resp.sendRedirect("/login");
     }
 }

@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Регистрация</title>
-  <link rel="stylesheet" href="registration.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация завершена | Тестовичок</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="registration-success.css">
 </head>
 <body>
+<div class="container">
+    <div class="success-card">
+        <div class="logo">
+            <h1></h1>
+        </div>
 
-<h1>Регистрация успешна!</h1>
-<a href="/login">Перейти на страницу входа</a>
+        <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#00b894" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+        </div>
+
+        <div class="success-message">
+            <h2>Регистрация завершена!</h2>
+            <p>Спасибо за регистрацию в нашем сервисе <span>&#128153</span></p>
+            <a href="/login" class="btn">Перейти на страницу входа</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.btn').forEach(function(btn) {
+        btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+</script>
 </body>
 </html>

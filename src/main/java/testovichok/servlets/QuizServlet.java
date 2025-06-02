@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import testovichok.entityes.Quiz;
+import testovichok.entityes.QuizCategory;
 import testovichok.entityes.QuizParameters;
 import testovichok.entityes.User;
 import testovichok.service.*;
@@ -34,10 +35,11 @@ public class QuizServlet extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        User user = (User) req.getSession().getAttribute("user");
-        List<Quiz> quizzes = quizService.findAllQuizzesByUserId(user.getId());
+        List<Quiz> quizzes = quizService.findAllQuizzes();
+        List<QuizCategory> quizCategories = quizService.findAllQuizCategories();
         req.getServletContext().setAttribute("quizzes", quizzes);
-        req.getServletContext().setAttribute("onlineUsers", authenticateService.getOnlineUsersSet());
+        req.getServletContext().setAttribute("quizCategories", quizCategories);
+        req.getServletContext().setAttribute("onlineUsers", authenticateService.getOnlineUsersMap());
         req.getRequestDispatcher("/quizzes.jsp").forward(req, resp);
     }
     @SneakyThrows
