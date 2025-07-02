@@ -2,41 +2,70 @@ package testovichok.dao;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.SneakyThrows;
+import testovichok.entityes.PassQuiz;
 import testovichok.entityes.Quiz;
 import testovichok.entityes.QuizCategory;
+import testovichok.entityes.User;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class JsonQuizDao implements QuizDao {
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    private final File JsonQuizPathFile = new File("C:\\Users\\User\\IdeaProjects\\my-webapp\\src\\main\\resources\\quizzes.json");
+    private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    private final String jsonQuizPath = "C:\\Users\\User\\IdeaProjects\\my-webapp\\src\\main\\resources\\quizzes";
     private final File JsonQuizCategoriesPathFile = new File("C:\\Users\\User\\IdeaProjects\\my-webapp\\src\\main\\resources\\categories.json");
+    private final File JsonQuizResultsPathFile = new File("C:\\Users\\User\\IdeaProjects\\my-webapp\\src\\main\\resources\\results.json");
 
     @SneakyThrows
     @Override
     public synchronized void addQuiz(Quiz quiz) {
-        List<Quiz> quizzes = getAllQuizzes();
-        quizzes.add(quiz);
-        objectMapper.writeValue(JsonQuizPathFile, quizzes);
+        objectMapper.writeValue(getQuizFile(quiz.getQuizId()), quiz);
+    }
+
+    @Override
+    public synchronized void addQuizResult(PassQuiz passQuiz) throws IOException {
+        List<PassQuiz> passQuizList = getAllQuizResults();
+        passQuizList.add(passQuiz);
+        objectMapper.writeValue(JsonQuizResultsPathFile, passQuizList);
     }
 
     @SneakyThrows
     @Override
-    public synchronized List<Quiz> getAllQuizzes() {
-        return objectMapper.readValue(JsonQuizPathFile, new TypeReference<List<Quiz>>() {
+    public synchronized List<PassQuiz> getAllQuizResults() {
+        return objectMapper.readValue(JsonQuizResultsPathFile, new TypeReference<List<PassQuiz>>() {
         });
     }
 
     @SneakyThrows
     @Override
+    public synchronized PassQuiz getQuizResultById(UUID passQuizId) {
+        PassQuiz passQuiz = getAllQuizResults().stream().filter(quizResult -> quizResult.getPassId().equals(passQuizId)).findFirst().get();
+        return passQuiz;
+    }
+
+    public synchronized Quiz getQuiz(UUID uuid) {
+        return readQuiz(getQuizFile(uuid));
+    }
+
+    @Override
+    public synchronized List<Quiz> getAllQuizzes() {
+        return Arrays.stream(new File(jsonQuizPath).listFiles())
+                .map(file -> readQuiz(file))
+                .collect(Collectors.toList());
+    }
+
+    @SneakyThrows
+    @Override
     public synchronized void removeQuiz(UUID quizId) {
-        List<Quiz> quizzes = getAllQuizzes().stream().filter(quiz -> !(quiz.getQuizId().equals(quizId))).collect(Collectors.toList());
-        objectMapper.writeValue(JsonQuizPathFile, quizzes);
+        getQuizFile(quizId).delete();
     }
 
     @SneakyThrows
@@ -59,5 +88,14 @@ public class JsonQuizDao implements QuizDao {
     public synchronized List<QuizCategory> getAllQuizCategories() {
         return objectMapper.readValue(JsonQuizCategoriesPathFile, new TypeReference<List<QuizCategory>>() {
         });
+    }
+
+    private File getQuizFile(UUID uuid) {
+        return new File(jsonQuizPath + "\\" + uuid + ".json");
+    }
+
+    @SneakyThrows
+    private Quiz readQuiz(File file) {
+        return objectMapper.readValue(file, Quiz.class);
     }
 }

@@ -9,7 +9,7 @@
     <title>Профиль | Тестовичок</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/profile.css">
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="/menu/menu.css">
 </head>
 <body>
 
@@ -31,12 +31,12 @@
 
         <div class="profile-section">
             <h3 class="section-title">Смена пароля</h3>
-            <form id="changePasswordForm" action="/menu/profile" method="POST">
+            <form id="changePasswordForm" action="/profile" method="POST">
                 <div class="form-group">
                     <label for="currentPassword">Текущий пароль</label>
                     <div class="password-container">
                         <input type="password" id="currentPassword" name="currentPassword" class="form-control" placeholder="Введите текущий пароль" required>
-                        <span class="toggle-password">️‍‍🫣️️</span>
+                        <span class="toggle-password">🔒️</span>
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@
                     <label for="newPassword">Новый пароль</label>
                     <div class="password-container">
                         <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="Введите новый пароль" required>
-                        <span class="toggle-password">🫣</span>
+                        <span class="toggle-password">🔒</span>
                     </div>
                 </div>
                 <div class="actions">
@@ -62,7 +62,7 @@
             const input = this.previousElementSibling;
             const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
             input.setAttribute('type', type);
-            this.textContent = type === 'password' ? '🫣' : '🔒';
+            this.textContent = type === 'password' ? '🔒' : '🫣';
         });
     });
 

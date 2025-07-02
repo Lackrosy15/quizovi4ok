@@ -9,11 +9,11 @@
     <title>Настройки | Тестовичок</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="/settings.css">
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="/admin/settings.css">
+    <link rel="stylesheet" href="/menu/menu.css">
 </head>
 <body>
-<%@ include file="menu.jsp" %>
+<%@ include file="../menu.jsp" %>
 
 <main class="main-content">
     <div class="header">
@@ -30,7 +30,7 @@
                         <li class="category-item">
                             <span>${quizCategory.name}</span>
                             <div class="category-actions">
-                                <form action="/menu/settings" method="POST">
+                                <form action="/settings" method="POST">
                                     <input type="hidden" name="quiz_category_name_for_remove" value="${quizCategory.name}"/>
                                     <button class="action-btn" type="submit">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -47,7 +47,7 @@
                         </li>
                     </c:forEach>
                 </ul>
-                <form action="/menu/settings" method="POST">
+                <form action="/settings" method="POST">
                     <div class="add-category-form">
                         <div class="form-group">
                             <label for="new-category">Новая категория</label>

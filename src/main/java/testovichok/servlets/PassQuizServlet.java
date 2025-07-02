@@ -6,34 +6,40 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import testovichok.entityes.ChangePasswordCredentials;
-import testovichok.entityes.User;
-import testovichok.service.AuthenticateService;
+import testovichok.entityes.PassQuizParameters;
+import testovichok.entityes.Quiz;
+import testovichok.entityes.QuizParameters;
 import testovichok.service.QuizService;
-import testovichok.service.RegistrationService;
 import testovichok.utils.ParametersExtractor;
 
 import java.io.IOException;
+import java.util.UUID;
 
-@WebServlet("/profile")
-public class ProfileServlet extends HttpServlet {
+@WebServlet("/quizzes/*")
+public class PassQuizServlet extends HttpServlet {
+
+    private QuizService quizService;
     private ParametersExtractor parametersExtractor;
-    private RegistrationService registrationService;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
+        quizService = (QuizService) config.getServletContext().getAttribute("QuizService");
         parametersExtractor = (ParametersExtractor) config.getServletContext().getAttribute("ParametersExtractor");
-        registrationService = (RegistrationService) config.getServletContext().getAttribute("RegistrationService");
     }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/profile.jsp").forward(req, resp);
+        var quizId = req.getPathInfo().replace("/", "");
+        Quiz quiz = quizService.findQuizById(quizId);
+        req.setAttribute("quiz", quiz);
+        req.getRequestDispatcher("/pass-quiz.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ChangePasswordCredentials changePasswordCredentials = parametersExtractor.getChangePasswordParameters(req);
-        registrationService.changePassword(changePasswordCredentials, req);
+        Quiz quiz = quizService.findQuizById(req.getPathInfo().replace("/", ""));
+        PassQuizParameters passQuizParameters = parametersExtractor.getPassQuizParameters(req, quiz);
+        quizService.addQuizResult(quizService.createPassQuiz(passQuizParameters));
+        resp.sendRedirect("/quizzes");
     }
 }

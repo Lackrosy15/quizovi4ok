@@ -1,1 +1,88 @@
-[]
+[
+  {
+    "passId": "d2091995-58f3-4532-80fc-1644eb57b4c8",
+    "quizId": "f8c3ce51-1e56-476a-b5ee-c602af184b89",
+    "quizName": "Тестовый квиз",
+    "quizCategory": "Программирование",
+    "quizImgUrl": "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg",
+    "userId": "01710199-bb83-4518-841d-dff14a3211e1",
+    "userName": "Виктория",
+    "userLogin": "rodionova.viktoriya.99@bk.ru",
+    "questionList": [
+      {
+        "question": "Тест вопрос 1",
+        "answerOptions": [
+          "1",
+          "Правильный",
+          "3",
+          "Правильный"
+        ],
+        "userAnswers": [
+          2
+        ],
+        "correctAnswers": [
+          2,
+          4
+        ]
+      },
+      {
+        "question": "Тест вопрос 2",
+        "answerOptions": [
+          "Правильный",
+          "2",
+          "3",
+          "4"
+        ],
+        "userAnswers": [
+          2
+        ],
+        "correctAnswers": [
+          1
+        ]
+      }
+    ],
+    "dateAndTimeOfPassage": "2025-07-01T12:36:54.7861338"
+  },
+  {
+    "passId": "66421a36-5610-4efe-9c71-5ff483283415",
+    "quizId": "f8c3ce51-1e56-476a-b5ee-c602af184b89",
+    "quizName": "Тестовый квиз",
+    "quizCategory": "Программирование",
+    "quizImgUrl": "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg",
+    "userId": "01710199-bb83-4518-841d-dff14a3211e1",
+    "userName": "Виктория",
+    "userLogin": "rodionova.viktoriya.99@bk.ru",
+    "questionList": [
+      {
+        "question": "Тест вопрос 1",
+        "answerOptions": [
+          "1",
+          "Правильный",
+          "3",
+          "Правильный"
+        ],
+        "userAnswers": [
+          1
+        ],
+        "correctAnswers": [
+          2,
+          4
+        ]
+      },
+      {
+        "question": "Тест вопрос 2",
+        "answerOptions": [
+          "Правильный",
+          "2",
+          "3",
+          "4"
+        ],
+        "userAnswers": [],
+        "correctAnswers": [
+          1
+        ]
+      }
+    ],
+    "dateAndTimeOfPassage": "2025-07-01T13:54:37.2087034"
+  }
+]

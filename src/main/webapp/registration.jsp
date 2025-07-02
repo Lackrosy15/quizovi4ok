@@ -32,7 +32,7 @@
                 <label for="password">Пароль</label>
                 <div class="password-container">
                     <input type="password" id="password" name="password" class="form-control" placeholder="Создайте пароль" required>
-                    <span class="toggle-password">🫣</span>
+                    <span class="toggle-password">🔒</span>
                 </div>
             </div>
             <button type="submit" class="btn">Зарегистрироваться</button>
@@ -54,7 +54,7 @@
             const input = this.previousElementSibling;
             const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
             input.setAttribute('type', type);
-            this.textContent = type === 'password' ? '🫣' : '🔒';
+            this.textContent = type === 'password' ? '🔒' : '🫣';
         });
     });
 </script>

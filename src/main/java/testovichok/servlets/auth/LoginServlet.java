@@ -22,7 +22,7 @@ public class LoginServlet extends BaseAuthenticateServlet {
         User user = null;
         try {
             user = authenticateService.authenticate(loginCredentials, req);
-            resp.sendRedirect("/menu/quizzes");
+            resp.sendRedirect("/quizzes");
             return;
         } catch (UserBlockedException e) {
             req.setAttribute("errorMessageCode429", "Вы временно заблокированы. Слишком много запросов. Попробуйте снова через 5 минут!");

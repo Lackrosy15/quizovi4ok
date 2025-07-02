@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ page session = "true" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="testovichok.entityes.Roles"%>
+
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -10,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="/quizzes.css">
-    <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="/menu/menu.css">
 </head>
 <body>
 <%@ include file="menu.jsp" %>
@@ -42,11 +45,14 @@
                                 </c:otherwise>
                             </c:choose>
                         </span>
+                            <form action="/quizzes/${quiz.quizId}" method="GET">
+                                <button type="submit" class="btn-pass">Пройти тест</button>
+                            </form>
                         </div>
                     </div>
+                    <c:if test="${sessionScope.user.role eq Roles.ADMIN}">
                     <div class="quiz-actions">
-                        <form>
-                            <input type="hidden" name="quiz_id" value="${quiz.quizId}"/>
+                        <form action="/quiz-edit/${quiz.quizId}" method="GET">
                             <button type="submit" class="action-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -56,7 +62,7 @@
                                 </svg>
                             </button>
                         </form>
-                        <form action="/menu/quizzes" method="POST">
+                        <form action="/quizzes" method="POST">
                             <input type="hidden" name="method" value="DELETE"/>
                             <input type="hidden" name="quiz_id" value="${quiz.quizId}"/>
                             <button type="submit" class="action-btn">
@@ -71,39 +77,24 @@
                             </button>
                         </form>
                     </div>
+                    </c:if>
                 </div>
             </c:forEach>
-
+            <c:if test="${sessionScope.user.role eq Roles.ADMIN}">
             <div class="empty-state">
                 <p>У вас пока нет других квизов. Создайте новый!</p>
             </div>
+            </c:if>
         </div>
 
-        <div class="add-quiz-form">
-            <h2 class="form-title">Создать новый квиз</h2>
-            <form action="/menu/quizzes" method="POST">
-                <div class="form-group">
-                    <label for="quiz-name">Название квиза</label>
-                    <input type="text" id="quiz-name" class="form-control" name="quizName"
-                           placeholder="Введите название" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="imgUrl">Картинка</label>
-                    <input type="text" id="imgUrl" class="form-control" placeholder="Введите URL" name="imgUrl">
-                </div>
-
-                <div class="form-group">
-                    <label for="quiz-category">Категория</label>
-                    <select id="quiz-category" name="category" class="form-control">
-                        <c:forEach var="quizCategory" items="${quizCategories}">
-                        <option value="${quizCategory.name}">${quizCategory.name}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <button type="submit" class="btn">Создать квиз</button>
-            </form>
-        </div>
+        <c:if test="${sessionScope.user.role eq Roles.ADMIN}">
+        <form action="/create-quiz" method="GET">
+            <div class="add-quiz-form">
+                <h2 class="form-title">Создать новый квиз</h2>
+                <button type="submit" class="btn">Создать</button>
+            </div>
+        </form>
+        </c:if>
     </div>
 </main>
 

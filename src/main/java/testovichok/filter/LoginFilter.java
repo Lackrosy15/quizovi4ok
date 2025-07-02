@@ -8,8 +8,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.SneakyThrows;
 
-import java.io.IOException;
-
 
 @WebFilter("/*")
 public class LoginFilter extends HttpFilter {

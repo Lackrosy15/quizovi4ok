@@ -1,4 +1,4 @@
-package testovichok.сontext;
+package testovichok.context;
 
 
 import testovichok.dao.JsonUserDao;
@@ -13,7 +13,6 @@ import testovichok.utils.ParametersExtractor;
 
 @WebListener
 public class AppListener implements ServletContextListener {
-
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         UserDao userDao = new JsonUserDao();

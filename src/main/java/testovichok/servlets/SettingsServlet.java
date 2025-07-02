@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet("/menu/settings")
+@WebServlet("/settings")
 public class SettingsServlet extends HttpServlet {
 
     private QuizService quizService;
@@ -34,7 +34,7 @@ public class SettingsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<QuizCategory> quizCategories = quizService.findAllQuizCategories();
         req.getServletContext().setAttribute("quizCategories", quizCategories);
-        req.getRequestDispatcher("/settings.jsp").forward(req, resp);
+        req.getRequestDispatcher("/admin/settings.jsp").forward(req, resp);
     }
 
     @Override
@@ -45,21 +45,21 @@ public class SettingsServlet extends HttpServlet {
         if (category != null) {
             try {
                 quizService.addQuizCategory(category);
-                resp.sendRedirect("/menu/settings");
+                resp.sendRedirect("/settings");
                 return;
             } catch (ExistQuizCategoryException e) {
-                req.setAttribute("quizCategoryExist", "Такая категория уже существует✅");
+                req.setAttribute("quizCategoryExist", "Такая категория уже существует ✅");
             }
-            req.getRequestDispatcher("/settings.jsp").forward(req, resp);
+            req.getRequestDispatcher("/admin/settings.jsp").forward(req, resp);
         } else if (categoryForRemove != null) {
             try {
                 quizService.removeQuizCategory(categoryForRemove);
-                resp.sendRedirect("/menu/settings");
+                resp.sendRedirect("/settings");
                 return;
             } catch (ExistQuizCategoryException e) {
                 req.setAttribute("quizWithThisCategoryExist", "❕Вы не можете удалить эту категорию, так как есть квизы с этой категорией");
             }
-            req.getRequestDispatcher("/settings.jsp").forward(req, resp);
+            req.getRequestDispatcher("/admin/settings.jsp").forward(req, resp);
         }
     }
 }
