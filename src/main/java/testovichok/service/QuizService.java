@@ -131,7 +131,7 @@ public class QuizService {
 
     public void addQuizCategory(String categoryName) throws ExistQuizCategoryException {
         List<QuizCategory> quizCategories = quizDao.getAllQuizCategories();
-        QuizCategory quizCategory = quizCategories.stream().filter(QC -> QC.getName().equalsIgnoreCase(categoryName)).findFirst().orElse(null);
+        QuizCategory quizCategory = quizCategories.stream().filter(QC -> QC.getName().equalsIgnoreCase(categoryName.trim())).findFirst().orElse(null);
         if (quizCategory == null) {
             quizDao.addQuizCategory(new QuizCategory(categoryName));
         } else {

@@ -8,7 +8,7 @@
              stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
         </svg>
-        <span class="logo-text">Тестовичок</span>
+        <span class="logo-text">Квизовичок</span>
     </div>
 
     <nav class="nav-menu">
@@ -41,7 +41,7 @@
             Мои результаты
         </a>
 <c:if test="${sessionScope.user.role eq Roles.ADMIN}">
-        <a href="/stats" class="nav-item">
+        <a href="/admin/stats" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -50,7 +50,7 @@
             </svg>
             Статистика
         </a>
-        <a href="/settings" class="nav-item">
+        <a href="/admin/settings" class="nav-item">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="3"></circle>

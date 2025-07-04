@@ -8,9 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import testovichok.entityes.Quiz;
-import testovichok.entityes.QuizCategory;
 import testovichok.entityes.QuizParameters;
-import testovichok.entityes.User;
 import testovichok.service.*;
 import testovichok.utils.ParametersExtractor;
 

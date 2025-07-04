@@ -8,12 +8,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import testovichok.entityes.PassQuizParameters;
 import testovichok.entityes.Quiz;
-import testovichok.entityes.QuizParameters;
 import testovichok.service.QuizService;
 import testovichok.utils.ParametersExtractor;
 
 import java.io.IOException;
-import java.util.UUID;
 
 @WebServlet("/quizzes/*")
 public class PassQuizServlet extends HttpServlet {

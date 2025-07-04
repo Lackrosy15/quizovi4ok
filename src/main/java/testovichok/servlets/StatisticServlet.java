@@ -12,7 +12,7 @@ import testovichok.service.QuizService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/stats")
+@WebServlet("/admin/stats")
 public class StatisticServlet extends HttpServlet {
     private QuizService quizService;
 

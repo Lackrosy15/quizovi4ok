@@ -146,6 +146,19 @@ body {
     margin-left: 1rem;
 }
 
+.error-container {
+    margin-top: 10px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
 .social-login {
     display: flex;
     justify-content: center;

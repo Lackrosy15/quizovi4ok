@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Редактирование квиза | Тестовичок</title>
+    <title>Редактирование квиза | Квизовичок</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="/admin/create-quiz.css">
@@ -25,7 +25,7 @@
 <div class="container">
     <h1>Редактирование квиза</h1>
 
-    <form id="quiz-form" action="/quiz-edit/${quiz.quizId}" method="POST">
+    <form id="quiz-form" action="/admin/quiz-edit/${quiz.quizId}" method="POST">
         <input type="hidden" name="method" value="PUT"/>
         <div class="form-group">
             <label for="quiz-title">Название квиза</label>

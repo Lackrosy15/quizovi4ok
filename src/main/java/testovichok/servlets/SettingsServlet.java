@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet("/settings")
+@WebServlet("/admin/settings")
 public class SettingsServlet extends HttpServlet {
 
     private QuizService quizService;
@@ -45,7 +45,7 @@ public class SettingsServlet extends HttpServlet {
         if (category != null) {
             try {
                 quizService.addQuizCategory(category);
-                resp.sendRedirect("/settings");
+                resp.sendRedirect("/admin/settings");
                 return;
             } catch (ExistQuizCategoryException e) {
                 req.setAttribute("quizCategoryExist", "Такая категория уже существует ✅");
@@ -54,7 +54,7 @@ public class SettingsServlet extends HttpServlet {
         } else if (categoryForRemove != null) {
             try {
                 quizService.removeQuizCategory(categoryForRemove);
-                resp.sendRedirect("/settings");
+                resp.sendRedirect("/admin/settings");
                 return;
             } catch (ExistQuizCategoryException e) {
                 req.setAttribute("quizWithThisCategoryExist", "❕Вы не можете удалить эту категорию, так как есть квизы с этой категорией");

@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet("/stat/*")
+@WebServlet("/admin/stat/*")
 public class CertainPassQuizStatsServlet extends HttpServlet {
     private QuizService quizService;
 

@@ -12,12 +12,11 @@ import testovichok.entityes.QuizParameters;
 import testovichok.service.QuizService;
 import testovichok.utils.ParametersExtractor;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet("/quiz-edit/*")
+@WebServlet("/admin/quiz-edit/*")
 public class EditQuizServlet extends HttpServlet {
 
     private QuizService quizService;

@@ -18,11 +18,13 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static testovichok.dao.DaoConstants.BASE_PATH;
+
 public class JsonQuizDao implements QuizDao {
     private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    private final String jsonQuizPath = "C:\\Users\\User\\IdeaProjects\\my-webapp\\src\\main\\resources\\quizzes";
-    private final File JsonQuizCategoriesPathFile = new File("C:\\Users\\User\\IdeaProjects\\my-webapp\\src\\main\\resources\\categories.json");
-    private final File JsonQuizResultsPathFile = new File("C:\\Users\\User\\IdeaProjects\\my-webapp\\src\\main\\resources\\results.json");
+    private final String jsonQuizPath = BASE_PATH + "\\quizzes";
+    private final File JsonQuizCategoriesPathFile = new File(BASE_PATH + "\\categories.json");
+    private final File JsonQuizResultsPathFile = new File(BASE_PATH + "\\results.json");
 
     @SneakyThrows
     @Override

@@ -25,9 +25,9 @@ public class LoginServlet extends BaseAuthenticateServlet {
             resp.sendRedirect("/quizzes");
             return;
         } catch (UserBlockedException e) {
-            req.setAttribute("errorMessageCode429", "Вы временно заблокированы. Слишком много запросов. Попробуйте снова через 5 минут!");
+            req.setAttribute("errorMessageCode429", " ❗Вы временно заблокированы. Слишком много запросов. Попробуйте снова через 5 минут!");
         } catch (LoginOrPasswordInvalidException e) {
-            req.setAttribute("errorMessageInvalidLoginOrPassword", "Неправильный логин или пароль");
+            req.setAttribute("errorMessageInvalidLoginOrPassword", "❗Неправильный логин или пароль");
         }
 
         req.getRequestDispatcher("/login.jsp").forward(req, resp);

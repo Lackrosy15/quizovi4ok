@@ -27,7 +27,7 @@ public class RegistrationServlet extends BaseAuthenticateServlet {
                 req.getRequestDispatcher("/registration.jsp").forward(req, resp);
             }
         } catch (IncorrectDataFormatException e) {
-            req.setAttribute("errorMessageCode422", "Неверный формат данных. Логин должен быть почтой, а пароль содержать буквы, цифры и быть не менее 8 символов.");
+            req.setAttribute("errorMessageCode422", " ❗Неверный формат данных. Логин должен быть почтой, а пароль содержать буквы, цифры и быть не менее 8 символов.");
         }
         req.getRequestDispatcher("/registration.jsp").forward(req, resp);
     }

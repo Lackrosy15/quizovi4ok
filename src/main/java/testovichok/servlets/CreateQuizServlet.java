@@ -13,7 +13,7 @@ import testovichok.utils.ParametersExtractor;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/create-quiz")
+@WebServlet("/admin/create-quiz")
 public class CreateQuizServlet extends HttpServlet {
 
     private QuizService quizService;

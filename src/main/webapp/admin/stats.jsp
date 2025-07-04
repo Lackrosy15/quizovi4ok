@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пройденные квизы | Тестовичок</title>
+    <title>Пройденные квизы | Квизовичок</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="/quizzes.css">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="quiz-actions">
-                        <a href="/stats/${passQuiz.quizId}" class="form-link">
+                        <a href="/admin/stats/${passQuiz.quizId}" class="form-link">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                  stroke-linejoin="round" class="link-icon">

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet("/stats/*")
+@WebServlet("/admin/stats/*")
 public class StatisticOfQuizServlet extends HttpServlet {
     private QuizService quizService;
 

@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Настройки | Тестовичок</title>
+    <title>Настройки | Квизовичок</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="/admin/settings.css">
@@ -30,7 +30,7 @@
                         <li class="category-item">
                             <span>${quizCategory.name}</span>
                             <div class="category-actions">
-                                <form action="/settings" method="POST">
+                                <form action="/admin/settings" method="POST">
                                     <input type="hidden" name="quiz_category_name_for_remove" value="${quizCategory.name}"/>
                                     <button class="action-btn" type="submit">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -47,12 +47,12 @@
                         </li>
                     </c:forEach>
                 </ul>
-                <form action="/settings" method="POST">
+                <form action="/admin/settings" method="POST">
                     <div class="add-category-form">
                         <div class="form-group">
                             <label for="new-category">Новая категория</label>
                             <input type="text" name="quizCategory" id="new-category" class="form-control"
-                                   placeholder="Введите название категории">
+                                   placeholder="Введите название категории" required>
                         </div>
                         <button class="btn btn-sm" type="submit">Добавить</button>
                     </div>

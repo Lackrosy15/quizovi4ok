@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static testovichok.dao.DaoConstants.BASE_PATH;
+
 public class JsonUserDao implements UserDao {
     private final ObjectMapper objectMapper = new ObjectMapper();
-    private final File JsonUsersPathFile = new File("C:\\Users\\User\\IdeaProjects\\my-webapp\\src\\main\\resources\\users.json");
+    private final File JsonUsersPathFile = new File(BASE_PATH + "\\users.json");
 
     @SneakyThrows
     @Override

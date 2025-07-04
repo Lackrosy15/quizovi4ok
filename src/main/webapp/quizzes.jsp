@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Квизы | Тестовичок</title>
+    <title>Квизы | Квизовичок</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="/quizzes.css">
@@ -52,7 +52,7 @@
                     </div>
                     <c:if test="${sessionScope.user.role eq Roles.ADMIN}">
                     <div class="quiz-actions">
-                        <form action="/quiz-edit/${quiz.quizId}" method="GET">
+                        <form action="/admin/quiz-edit/${quiz.quizId}" method="GET">
                             <button type="submit" class="action-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                      stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -88,7 +88,7 @@
         </div>
 
         <c:if test="${sessionScope.user.role eq Roles.ADMIN}">
-        <form action="/create-quiz" method="GET">
+        <form action="/admin/create-quiz" method="GET">
             <div class="add-quiz-form">
                 <h2 class="form-title">Создать новый квиз</h2>
                 <button type="submit" class="btn">Создать</button>
