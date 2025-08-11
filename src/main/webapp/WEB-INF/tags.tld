@@ -12,7 +12,7 @@
 
     <function>
         <name>formatDateTime</name>
-        <function-class>testovichok.utils.DateUtils</function-class>
+        <function-class>quizovichok.utils.DateUtils</function-class>
         <function-signature>String format(java.time.LocalDateTime, java.lang.String)</function-signature>
     </function>
 </taglib>

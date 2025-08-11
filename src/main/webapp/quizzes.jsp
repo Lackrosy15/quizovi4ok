@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ page session = "true" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="testovichok.entityes.Roles"%>
+<%@ page import="quizovichok.entityes.Roles"%>
 
 
 <!DOCTYPE html>
