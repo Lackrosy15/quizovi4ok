@@ -2,6 +2,7 @@ package quizovichok.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import quizovichok.dao.UserDao;
 import quizovichok.entityes.LoginAttempt;

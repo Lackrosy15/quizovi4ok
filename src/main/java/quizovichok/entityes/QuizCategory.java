@@ -10,5 +10,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QuizCategory {
-    String name;
+    private String name;
 }
