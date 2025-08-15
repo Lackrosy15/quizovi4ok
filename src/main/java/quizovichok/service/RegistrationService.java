@@ -9,6 +9,7 @@ import quizovichok.entityes.RegistrationCredentials;
 import quizovichok.entityes.Roles;
 import quizovichok.entityes.User;
 import quizovichok.exceptions.IncorrectDataFormatException;
+import quizovichok.exceptions.LoginOrPasswordInvalidException;
 
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -52,6 +53,11 @@ public class RegistrationService {
                 user.setPassword(SecurityService.hashPassword(changePasswordCredentials.getNewPassword()));
                 userDao.updateUser(user);
             }
+            else {
+                throw new IncorrectDataFormatException();
+            }
+        } else {
+            throw new LoginOrPasswordInvalidException();
         }
     }
 }

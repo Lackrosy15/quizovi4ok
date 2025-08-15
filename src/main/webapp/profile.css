@@ -76,6 +76,18 @@
 .password-container {
     position: relative;
 }
+.error-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    padding: 12px 24px;
+    border-radius: 4px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
 
 .toggle-password {
     position: absolute;

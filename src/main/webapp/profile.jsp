@@ -51,6 +51,10 @@
                     <button type="submit" class="btn">Сохранить изменения</button>
                 </div>
             </form>
+            <div class="error-container">
+                <c:out value="${errorMessageCode422}"/>
+                <c:out value="${errorMessageInvalidLoginOrPassword}"/>
+            </div>
         </div>
     </div>
 </main>
