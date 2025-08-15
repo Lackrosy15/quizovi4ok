@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.SneakyThrows;
+import org.hibernate.SessionFactory;
+import quizovichok.config.SessionFactoryConfig;
 import quizovichok.entityes.PassQuiz;
 import quizovichok.entityes.Quiz;
 import quizovichok.entityes.QuizCategory;
@@ -23,6 +25,7 @@ public class JsonQuizDao implements QuizDao {
     private final String jsonQuizPath = BASE_PATH + "\\quizzes";
     private final File JsonQuizCategoriesPathFile = new File(BASE_PATH + "\\categories.json");
     private final File JsonQuizResultsPathFile = new File(BASE_PATH + "\\results.json");
+    private final SessionFactory sessionFactory = SessionFactoryConfig.getSessionFactory();
 
     @SneakyThrows
     @Override

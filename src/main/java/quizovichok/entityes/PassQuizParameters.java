@@ -22,5 +22,5 @@ public class PassQuizParameters {
     private String userName;
     private String userLogin;
     private List<PassQuizQuestion> questionList;
-    private LocalDateTime dateAndTimeOfPassage;
+    private LocalDateTime createdAt;
 }
