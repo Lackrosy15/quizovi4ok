@@ -12,6 +12,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.SneakyThrows;
 import quizovichok.dao.QuizDao;
 import quizovichok.entityes.*;
@@ -111,26 +112,37 @@ public class QuizService {
 
     @SneakyThrows
     public Quiz createQuiz(QuizParameters quizParameters) {
-        return createQuiz(UUID.randomUUID(), quizParameters);
-    }
-
-    @SneakyThrows
-    public Quiz createQuiz(UUID uuid, QuizParameters quizParameters) {
-        return new Quiz(uuid, quizParameters.getName(), quizParameters.getCategory(), quizParameters.getImgUrl(), quizParameters.getUser().getId(), quizParameters.getCreatedAt(), quizParameters.getQuestionList());
+        return Quiz.builder()
+                .category(quizParameters.getCategory())
+                .name(quizParameters.getName())
+                .imgUrl(quizParameters.getImgUrl())
+                .userId(quizParameters.getUser().getId())
+                .createdAt(quizParameters.getCreatedAt())
+                .questionList(quizParameters.getQuestionList())
+                .build();
     }
 
     @SneakyThrows
     public PassQuiz createPassQuiz(PassQuizParameters passQuizParameters) {
-        return new PassQuiz(passQuizParameters.getPassId(), passQuizParameters.getQuizId(), passQuizParameters.getQuizName(),
-                passQuizParameters.getQuizCategory(), passQuizParameters.getQuizImgUrl(), passQuizParameters.getUserId(),
-                passQuizParameters.getUserName(), passQuizParameters.getUserLogin(), passQuizParameters.getQuestionList(), LocalDateTime.now());
+
+        return PassQuiz.builder()
+                .quizId(passQuizParameters.getQuizId())
+                .quizName(passQuizParameters.getQuizName())
+                .quizCategory(passQuizParameters.getQuizCategory())
+                .quizImgUrl(passQuizParameters.getQuizImgUrl())
+                .userId(passQuizParameters.getUserId())
+                .userName(passQuizParameters.getUserName())
+                .userLogin(passQuizParameters.getUserLogin())
+                .questionList(passQuizParameters.getQuestionList())
+                .createdAt(LocalDateTime.now())
+                .build();
     }
 
     public void addQuizCategory(String categoryName) throws ExistQuizCategoryException {
         List<QuizCategory> quizCategories = quizDao.getAllQuizCategories();
         QuizCategory quizCategory = quizCategories.stream().filter(QC -> QC.getName().equalsIgnoreCase(categoryName.trim())).findFirst().orElse(null);
         if (quizCategory == null) {
-            quizDao.addQuizCategory(new QuizCategory(categoryName));
+            quizDao.addQuizCategory(QuizCategory.builder().name(categoryName).build());
         } else {
             throw new ExistQuizCategoryException();
         }

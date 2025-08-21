@@ -1,8 +1,5 @@
 package quizovichok.context;
 
-
-import org.hibernate.SessionFactory;
-import quizovichok.config.SessionFactoryConfig;
 import quizovichok.dao.JsonUserDao;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;

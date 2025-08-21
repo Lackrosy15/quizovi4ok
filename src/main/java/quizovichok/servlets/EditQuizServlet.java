@@ -45,7 +45,7 @@ public class EditQuizServlet extends HttpServlet {
         var quizId = req.getPathInfo().replace("/", "");
         QuizParameters quizParameters = parametersExtractor.getQuizParameters(req);
         quizService.removeQuiz(UUID.fromString(quizId));
-        quizService.addQuiz(quizService.createQuiz(UUID.fromString(quizId), quizParameters));
+        quizService.addQuiz(quizService.createQuiz(quizParameters));
         resp.sendRedirect("/quizzes");
     }
 }

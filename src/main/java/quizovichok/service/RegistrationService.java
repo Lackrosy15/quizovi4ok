@@ -39,7 +39,12 @@ public class RegistrationService {
     }
 
     public void registerUser(RegistrationCredentials registrationCredentials) {
-        User user = new User(UUID.randomUUID(), registrationCredentials.getName(), registrationCredentials.getLogin(), SecurityService.hashPassword(registrationCredentials.getPassword()), Roles.USER);
+        User user = User.builder()
+                .login(registrationCredentials.getLogin())
+                .password(SecurityService.hashPassword(registrationCredentials.getPassword()))
+                .name(registrationCredentials.getName())
+                .role(Roles.USER).build();
+
         userDao.addUser(user);
     }
 

@@ -13,7 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PassQuizParameters {
-    private UUID passId;
     private UUID quizId;
     private String quizName;
     private String quizCategory;

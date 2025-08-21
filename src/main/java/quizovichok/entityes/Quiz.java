@@ -1,19 +1,22 @@
 package quizovichok.entityes;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
+
+import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Builder
 @Entity
 @Table(name = "quizzes", schema = "quizovi4ok")
 public class Quiz {
@@ -27,6 +30,7 @@ public class Quiz {
     private UUID userId;
     private LocalDateTime createdAt;
 
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
     private List<Question> questionList;
 }

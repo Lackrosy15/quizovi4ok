@@ -39,7 +39,7 @@ public class ParametersExtractor {
             passQuizQuestionList.add(new PassQuizQuestion(questionText, answerOptions, checkedAnswers, quiz.getQuestionList().get(questionId - 1).getCorrectAnswers()));
             questionId++;
         }
-        return new PassQuizParameters(UUID.randomUUID(), quiz.getQuizId(), quiz.getName(), quiz.getCategory(), quiz.getImgUrl(), ((User) req.getSession().getAttribute("user")).getId(),
+        return new PassQuizParameters(quiz.getQuizId(), quiz.getName(), quiz.getCategory(), quiz.getImgUrl(), ((User) req.getSession().getAttribute("user")).getId(),
                 ((User) req.getSession().getAttribute("user")).getName(), ((User) req.getSession().getAttribute("user")).getLogin(), passQuizQuestionList, LocalDateTime.now());
     }
 

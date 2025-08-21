@@ -1,18 +1,19 @@
 package quizovichok.entityes;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import jakarta.persistence.*;
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Builder
 @Entity
-@Table(name = "categories", schema = "quizovi4ok")
+@Table(name = "quiz_categories", schema = "quizovi4ok")
 public class QuizCategory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
 }
