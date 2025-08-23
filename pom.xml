@@ -12,7 +12,6 @@
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
-
     <dependencies>
         <dependency>
             <groupId>jakarta.servlet</groupId>
@@ -70,6 +69,18 @@
         </dependency>
 
         <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-hikaricp</artifactId>
+            <version>6.6.10.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>5.0.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.7.5</version>
@@ -88,14 +99,11 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
     <build>
         <finalName>quizovichok</finalName>
-
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -121,9 +129,6 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-
         </plugins>
-
     </build>
-
 </project>

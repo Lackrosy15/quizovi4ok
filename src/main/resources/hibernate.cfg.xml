@@ -1,12 +1,16 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/mydb</property>
-        <property name="hibernate.connection.username">myuser</property>
-        <property name="hibernate.connection.password">mypassword</property>
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.HikariCPConnectionProvider</property>
+        <property name="hibernate.hikari.dataSourceClassName">org.postgresql.ds.PGSimpleDataSource</property>
+        <property name="hibernate.hikari.dataSource.url">jdbc:postgresql://localhost:5432/mydb</property>
+        <property name="hibernate.hikari.dataSource.user">myuser</property>
+        <property name="hibernate.hikari.dataSource.password">mypassword</property>
+
+        <property name="hibernate.hikari.maximumPoolSize">10</property>
+        <property name="hibernate.hikari.minimumIdle">5</property>
+        <property name="hibernate.hikari.idleTimeout">30000</property>
+        <property name="hibernate.hikari.connectionTimeout">30000</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
     </session-factory>
 </hibernate-configuration>

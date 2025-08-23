@@ -30,7 +30,7 @@
             <c:forEach var="passingTheQuiz" items="${passingQuizzesByQuizId}">
                 <div class="quiz-item">
                     <div class="quiz-info">
-                        <h3>${mytags:formatDateTime(passingTheQuiz.dateAndTimeOfPassage, "dd.MM.yyyy HH:mm")}</h3>
+                        <h3>${mytags:formatDateTime(passingTheQuiz.createdAt, "dd.MM.yyyy HH:mm")}</h3>
                         <h4>${passingTheQuiz.userName} (${passingTheQuiz.userLogin})</h4>
                     </div>
                     <div class="quiz-actions">

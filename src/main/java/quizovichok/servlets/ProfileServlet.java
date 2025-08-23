@@ -38,9 +38,10 @@ public class ProfileServlet extends HttpServlet {
             resp.sendRedirect("/profile");
         } catch (LoginOrPasswordInvalidException e) {
             req.setAttribute("errorMessageInvalidLoginOrPassword", "❗Вы ввели неправильный пароль");
+            req.getRequestDispatcher("/profile.jsp").forward(req, resp);
         } catch (IncorrectDataFormatException e) {
             req.setAttribute("errorMessageCode422", " ❗Неверный формат данных. Пароль должен содержать буквы, цифры и быть не менее 8 символов.");
+            req.getRequestDispatcher("/profile.jsp").forward(req, resp);
         }
-        req.getRequestDispatcher("/profile.jsp").forward(req, resp);
     }
 }

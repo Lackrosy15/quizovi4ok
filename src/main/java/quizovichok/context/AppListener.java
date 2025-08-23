@@ -1,10 +1,10 @@
 package quizovichok.context;
 
-import quizovichok.dao.JsonUserDao;
+import quizovichok.dao.UserDaoImpl;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
-import quizovichok.dao.JsonQuizDao;
+import quizovichok.dao.QuizDaoImpl;
 import quizovichok.dao.QuizDao;
 import quizovichok.dao.UserDao;
 import quizovichok.service.*;
@@ -14,9 +14,9 @@ import quizovichok.utils.ParametersExtractor;
 public class AppListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        UserDao userDao = new JsonUserDao();
+        UserDao userDao = new UserDaoImpl();
         UserService userService = new UserService(userDao);
-        QuizDao jsonQuizDao = new JsonQuizDao();
+        QuizDao jsonQuizDao = new QuizDaoImpl();
         QuizService quizService = new QuizService(jsonQuizDao);
         ParametersExtractor parametersExtractor = new ParametersExtractor();
         LoginAttemptService loginAttemptService = new LoginAttemptService();

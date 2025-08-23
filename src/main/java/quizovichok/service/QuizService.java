@@ -31,8 +31,7 @@ public class QuizService {
 
     @SneakyThrows
     public List<Quiz> findAllQuizzes() {
-        return quizDao.getAllQuizzes().stream()
-                .collect(Collectors.toList());
+        return quizDao.getAllQuizzes();
     }
 
     @SneakyThrows
