@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
-import quizovichok.entityes.QuizCategory;
+import quizovichok.entities.QuizCategory;
 import quizovichok.exceptions.ExistQuizCategoryException;
 import quizovichok.service.QuizService;
 

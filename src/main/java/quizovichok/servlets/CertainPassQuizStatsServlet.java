@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import quizovichok.entityes.PassQuiz;
+import quizovichok.entities.PassQuiz;
 import quizovichok.service.QuizService;
 
 import java.io.IOException;

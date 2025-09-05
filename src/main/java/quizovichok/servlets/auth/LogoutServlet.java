@@ -23,7 +23,7 @@ public class LogoutServlet extends HttpServlet {
     @SneakyThrows
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        authenticateService.logoutUser(req);
+        authenticateService.logoutUser(req.getSession());
         resp.sendRedirect("/login");
     }
 }

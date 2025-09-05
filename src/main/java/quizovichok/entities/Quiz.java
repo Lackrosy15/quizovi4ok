@@ -1,11 +1,9 @@
-package quizovichok.entityes;
+package quizovichok.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import jakarta.persistence.*;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -17,20 +15,21 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "quizzes", schema = "quizovi4ok")
 public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID quizId;
+    UUID quizId;
 
-    private String name;
-    private String category;
-    private String imgUrl;
-    private UUID userId;
-    private LocalDateTime createdAt;
+    String name;
+    String category;
+    String imgUrl;
+    UUID userId;
+    LocalDateTime createdAt;
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
-    private List<Question> questionList;
+    List<Question> questionList;
 }

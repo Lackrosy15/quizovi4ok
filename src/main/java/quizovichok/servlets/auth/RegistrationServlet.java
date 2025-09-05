@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
-import quizovichok.entityes.RegistrationCredentials;
+import quizovichok.entities.RegistrationCredentials;
 import quizovichok.exceptions.IncorrectDataFormatException;
 
 @WebServlet(urlPatterns = "/registration", initParams = {@WebInitParam(name = "resourceName", value = "/registration.jsp")})

@@ -6,8 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import quizovichok.entityes.PassQuizParameters;
-import quizovichok.entityes.Quiz;
+import quizovichok.entities.PassQuizParameters;
+import quizovichok.entities.Quiz;
 import quizovichok.service.QuizService;
 import quizovichok.utils.ParametersExtractor;
 

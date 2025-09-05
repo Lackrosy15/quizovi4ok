@@ -1,80 +1,76 @@
 package quizovichok.dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import quizovichok.config.SessionFactoryConfig;
-import quizovichok.entityes.User;
+import quizovichok.entities.OnlineUser;
+import quizovichok.entities.User;
 
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
-import static quizovichok.dao.DaoConstants.BASE_PATH;
-
+@RequiredArgsConstructor
 public class UserDaoImpl implements UserDao {
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    private final File JsonUsersPathFile = new File(BASE_PATH + "\\users.json");
-    private final SessionFactory sessionFactory = SessionFactoryConfig.getSessionFactory();
+
+    private final SessionFactory sessionFactory;
 
 
-    @SneakyThrows
     @Override
-    public synchronized void addUser(User user) {
-//        List<User> users = getAllUsers();
-//        users.add(user);
-//        objectMapper.writeValue(JsonUsersPathFile, users);
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
+    public void addUser(User user) {
+        sessionFactory.inTransaction(session -> {
             session.persist(user);
-            transaction.commit();
-        }
+        });
     }
 
-    @SneakyThrows
     @Override
-    public synchronized List<User> getAllUsers() {
-//        return objectMapper.readValue(JsonUsersPathFile, new TypeReference<List<User>>() {
-//        });
+    public List<User> getAllUsers() {
         try (Session session = sessionFactory.openSession()) {
             Query<User> query = session.createQuery("FROM User", User.class);
-            List<User> users = query.list();
-            return users;
+            return query.list();
         }
     }
 
-    @SneakyThrows
     @Override
     public void removeUser(UUID userId) {
-//        List<User> users = getAllUsers().stream().filter(user -> !(user.getId().equals(userId))).collect(Collectors.toList());
-//        objectMapper.writeValue(JsonUsersPathFile, users);
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
+        sessionFactory.inTransaction(session -> {
             User user = session.find(User.class, userId);
             session.remove(user);
-            transaction.commit();
-        }
+        });
     }
 
-    @SneakyThrows
     public void updateUser(User user) {
-//        List<User> UsersList = getAllUsers().stream()
-//                .map(u -> {
-//                    if (u.getId().equals(user.getId())) {
-//                        return user;
-//                    } else {
-//                        return u;
-//                    }
-//                })
-//                .toList();
-//        objectMapper.writeValue(JsonUsersPathFile, UsersList);
-        try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
+        sessionFactory.inTransaction(session -> {
             session.merge(user);
-            transaction.commit();
+        });
+    }
+
+    @Override
+    public void addOnlineUser(OnlineUser onlineUser) {
+        sessionFactory.inTransaction(session -> {
+            session.persist(onlineUser);
+        });
+    }
+
+    @Override
+    public void removeOnlineUser(String login) {
+        sessionFactory.inTransaction(session -> {
+            OnlineUser onlineUser = session.find(OnlineUser.class, login);
+            session.remove(onlineUser);
+        });
+    }
+
+    @Override
+    public List<OnlineUser> getOnlineUsers() {
+        try (Session session = sessionFactory.openSession()) {
+            Query<OnlineUser> query = session.createQuery("FROM OnlineUser", OnlineUser.class);
+            return query.list();
         }
     }
 }

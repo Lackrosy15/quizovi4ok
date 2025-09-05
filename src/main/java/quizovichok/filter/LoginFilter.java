@@ -7,8 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.SneakyThrows;
-import quizovichok.entityes.Roles;
-import quizovichok.entityes.User;
+import quizovichok.entities.Roles;
+import quizovichok.entities.User;
 
 
 @WebFilter("/*")

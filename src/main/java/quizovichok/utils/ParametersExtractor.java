@@ -1,7 +1,7 @@
 package quizovichok.utils;
 
 import jakarta.servlet.http.HttpServletRequest;
-import quizovichok.entityes.*;
+import quizovichok.entities.*;
 
 import java.time.LocalDateTime;
 import java.util.*;

@@ -5,9 +5,10 @@ import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import quizovichok.entityes.LoginCredentials;
-import quizovichok.entityes.User;
+import quizovichok.entities.LoginCredentials;
+import quizovichok.entities.User;
 import quizovichok.exceptions.LoginOrPasswordInvalidException;
+import quizovichok.exceptions.NoUserInDataBase;
 import quizovichok.exceptions.UserBlockedException;
 
 import java.io.IOException;
@@ -19,15 +20,17 @@ public class LoginServlet extends BaseAuthenticateServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         LoginCredentials loginCredentials = parametersExtractor.getLoginCredentials(req);
 
-        User user = null;
         try {
-            user = authenticateService.authenticate(loginCredentials, req);
+            User user = authenticateService.authenticate(loginCredentials, req);
             resp.sendRedirect("/quizzes");
             return;
         } catch (UserBlockedException e) {
             req.setAttribute("errorMessageCode429", " ❗Вы временно заблокированы. Слишком много запросов. Попробуйте снова через 5 минут!");
         } catch (LoginOrPasswordInvalidException e) {
             req.setAttribute("errorMessageInvalidLoginOrPassword", "❗Неправильный логин или пароль");
+        } catch (NoUserInDataBase e) {
+            resp.sendRedirect("/registration");
+            return;
         }
 
         req.getRequestDispatcher("/login.jsp").forward(req, resp);

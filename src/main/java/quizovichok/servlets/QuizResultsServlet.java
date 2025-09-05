@@ -6,8 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import quizovichok.entityes.PassQuiz;
-import quizovichok.entityes.User;
+import quizovichok.entities.PassQuiz;
+import quizovichok.entities.User;
 import quizovichok.service.QuizService;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class QuizResultsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UUID userId = ((User) req.getSession().getAttribute("user")).getId();
         UUID quizId = UUID.fromString(req.getPathInfo().replace("/", ""));
-        List<PassQuiz> passingTheQuizByUser = quizService.findAllPassQuizOfUser(userId, quizId);
+        List<PassQuiz> passingTheQuizByUser = quizService.findAllPassOfQuizByIdOfUser(userId, quizId);
         req.getServletContext().setAttribute("passingTheQuizByUser", passingTheQuizByUser);
         req.getRequestDispatcher("/results-quiz.jsp").forward(req, resp);
     }

@@ -1,28 +1,31 @@
 package quizovichok.service;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.experimental.FieldDefaults;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import quizovichok.dao.UserDao;
-import quizovichok.entityes.ChangePasswordCredentials;
-import quizovichok.entityes.RegistrationCredentials;
-import quizovichok.entityes.Roles;
-import quizovichok.entityes.User;
+import quizovichok.entities.ChangePasswordCredentials;
+import quizovichok.entities.RegistrationCredentials;
+import quizovichok.entities.Roles;
+import quizovichok.entities.User;
 import quizovichok.exceptions.IncorrectDataFormatException;
 import quizovichok.exceptions.LoginOrPasswordInvalidException;
 
-import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class RegistrationService {
 
-    private final UserDao userDao;
-    private static final Pattern emailPattern = Pattern.compile("^[A-Z0-9a-z+_.-]+@[A-Za-z0-9._-]+$");
-    private static final Pattern passwordPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d).{8,}$");
+    final UserDao userDao;
+    final PasswordEncoder passwordEncoder;
+    static final Pattern emailPattern = Pattern.compile("^[A-Z0-9a-z+_.-]+@[A-Za-z0-9._-]+$");
+    static final Pattern passwordPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d).{8,}$");
 
-    @SneakyThrows
     public boolean isValidateData(String email, String password) {
         Matcher emailMatcher = emailPattern.matcher(email);
         Matcher passwordMatcher = passwordPattern.matcher(password);
@@ -41,7 +44,7 @@ public class RegistrationService {
     public void registerUser(RegistrationCredentials registrationCredentials) {
         User user = User.builder()
                 .login(registrationCredentials.getLogin())
-                .password(SecurityService.hashPassword(registrationCredentials.getPassword()))
+                .password(passwordEncoder.encode(registrationCredentials.getPassword()))
                 .name(registrationCredentials.getName())
                 .role(Roles.USER).build();
 
@@ -50,15 +53,14 @@ public class RegistrationService {
 
     public void changePassword(ChangePasswordCredentials changePasswordCredentials, HttpServletRequest req) {
         User user = (User) req.getSession().getAttribute("user");
-        boolean isCorrectPassword = SecurityService.passwordEncoder.matches(changePasswordCredentials.getCurrentPassword(), user.getPassword());
+        boolean isCorrectPassword = passwordEncoder.matches(changePasswordCredentials.getCurrentPassword(), user.getPassword());
 
         if (isCorrectPassword) {
             Matcher passwordMatcher = passwordPattern.matcher(changePasswordCredentials.getNewPassword());
             if (passwordMatcher.matches()) {
-                user.setPassword(SecurityService.hashPassword(changePasswordCredentials.getNewPassword()));
+                user.setPassword(passwordEncoder.encode(changePasswordCredentials.getNewPassword()));
                 userDao.updateUser(user);
-            }
-            else {
+            } else {
                 throw new IncorrectDataFormatException();
             }
         } else {

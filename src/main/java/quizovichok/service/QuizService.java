@@ -11,105 +11,104 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.SneakyThrows;
 import quizovichok.dao.QuizDao;
-import quizovichok.entityes.*;
+import quizovichok.entities.*;
 import quizovichok.exceptions.ExistQuizCategoryException;
+
+import static java.util.stream.Collectors.toList;
 
 @AllArgsConstructor
 public class QuizService {
     private final QuizDao quizDao;
 
-    @SneakyThrows
     public List<Quiz> findAllQuizzesByUserId(UUID userId) {
         return quizDao.getAllQuizzes().stream()
                 .filter((quiz) -> quiz.getUserId().equals(userId))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
-    @SneakyThrows
+
     public List<Quiz> findAllQuizzes() {
         return quizDao.getAllQuizzes();
     }
 
-    @SneakyThrows
+
     public Quiz findQuizById(String uuid) {
         return quizDao.getQuiz(UUID.fromString(uuid));
     }
 
-    @SneakyThrows
+
     public List<QuizCategory> findAllQuizCategories() {
         return quizDao.getAllQuizCategories().stream()
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
-    @SneakyThrows
+
     public void addQuiz(Quiz quiz) {
         this.quizDao.addQuiz(quiz);
     }
 
-    @SneakyThrows
+
     public void addQuizResult(PassQuiz passQuiz) {
         this.quizDao.addQuizResult(passQuiz);
     }
 
-    @SneakyThrows
-    public List<PassQuiz> findAllPassQuizzesOfUser(UUID userId) {
+
+    public List<PassQuiz> findAllPassQuizzesGropingByQuizIdOfUser(UUID userId) {
         List<PassQuiz> allPassQuizzesOfUser = quizDao.getAllQuizResults().stream()
                 .filter(passQuiz -> passQuiz.getUserId().equals(userId))
                 .collect(Collectors.groupingBy(PassQuiz::getQuizId))
                 .values()
                 .stream()
                 .map(group -> group.get(0))
-                .collect(Collectors.toList());
+                .collect(toList());
 
         return allPassQuizzesOfUser;
     }
 
-    @SneakyThrows
-    public List<PassQuiz> findAllPassQuizzes() {
+
+    public List<PassQuiz> findAllPassQuizzesGroupingByQuizId() {
         List<PassQuiz> allPassQuizzes = quizDao.getAllQuizResults().stream()
                 .collect(Collectors.groupingBy(PassQuiz::getQuizId))
                 .values()
                 .stream()
                 .map(group -> group.get(0))
-                .collect(Collectors.toList());
+                .collect(toList());
 
         return allPassQuizzes;
     }
 
-    @SneakyThrows
+
     public PassQuiz findPassQuizById(UUID passQuizId) {
-        PassQuiz passQuiz = quizDao.getQuizResultById(passQuizId);
-        return passQuiz;
+        return quizDao.getQuizResultById(passQuizId);
     }
 
-    @SneakyThrows
-    public List<PassQuiz> findAllPassQuizOfUser(UUID userId, UUID quizId) {
+
+    public List<PassQuiz> findAllPassOfQuizByIdOfUser(UUID userId, UUID quizId) {
         List<PassQuiz> allPassQuizOfUser = quizDao.getAllQuizResults().stream()
-                .filter(passQuiz -> passQuiz.getUserId().equals(userId))
-                .filter(passQuiz -> passQuiz.getQuizId().equals(quizId))
-                .collect(Collectors.toList());
+                .filter(passQuiz -> passQuiz.getUserId().equals(userId) && passQuiz.getQuizId().equals(quizId))
+                .collect(toList());
 
         return allPassQuizOfUser;
     }
 
-    @SneakyThrows
-    public List<PassQuiz> findAllPassingQuizByQuizId(UUID quizId) {
+
+    public List<PassQuiz> findAllPassOfQuizByQuizId(UUID quizId) {
         List<PassQuiz> allPassingQuizByQuizId = quizDao.getAllQuizResults().stream()
                 .filter(passQuiz -> passQuiz.getQuizId().equals(quizId))
-                .collect(Collectors.toList());
+                .collect(toList());
         return allPassingQuizByQuizId;
     }
 
-    @SneakyThrows
+
     public void removeQuiz(UUID quizId) {
         this.quizDao.removeQuiz(quizId);
     }
 
-    @SneakyThrows
+
     public Quiz createQuiz(QuizParameters quizParameters) {
         return Quiz.builder()
                 .category(quizParameters.getCategory())
@@ -121,7 +120,7 @@ public class QuizService {
                 .build();
     }
 
-    @SneakyThrows
+
     public PassQuiz createPassQuiz(PassQuizParameters passQuizParameters) {
 
         return PassQuiz.builder()
@@ -138,22 +137,11 @@ public class QuizService {
     }
 
     public void addQuizCategory(String categoryName) throws ExistQuizCategoryException {
-        List<QuizCategory> quizCategories = quizDao.getAllQuizCategories();
-        QuizCategory quizCategory = quizCategories.stream().filter(QC -> QC.getName().equalsIgnoreCase(categoryName.trim())).findFirst().orElse(null);
-        if (quizCategory == null) {
-            quizDao.addQuizCategory(QuizCategory.builder().name(categoryName).build());
-        } else {
-            throw new ExistQuizCategoryException();
-        }
+        quizDao.addQuizCategory(QuizCategory.builder().name(categoryName).build());
     }
 
-    public void removeQuizCategory(String categoryName) throws ExistQuizCategoryException, IOException {
-        boolean isQuizCategory = quizDao.getAllQuizzes().stream().map(quiz -> quiz.getCategory()).anyMatch(quizCategory -> quizCategory.equals(categoryName));
-        if (isQuizCategory) {
-            throw new ExistQuizCategoryException();
-        } else {
-            quizDao.removeQuizCategory(categoryName);
-        }
-    }
 
+    public void removeQuizCategory(String categoryName) throws ExistQuizCategoryException {
+        quizDao.removeQuizCategory(categoryName);
+    }
 }

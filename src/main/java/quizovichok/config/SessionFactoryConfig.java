@@ -1,36 +1,22 @@
 package quizovichok.config;
 
+import lombok.Getter;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import quizovichok.entityes.PassQuiz;
-import quizovichok.entityes.Quiz;
-import quizovichok.entityes.QuizCategory;
-import quizovichok.entityes.User;
+import quizovichok.entities.*;
+
 
 public class SessionFactoryConfig {
     private static final SessionFactory sessionFactory = buildSessionFactory();
-
-    static {
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            shutdown();
-        }));
-    }
-
-    public static void shutdown() {
-        if (sessionFactory != null && !sessionFactory.isClosed()) {
-            sessionFactory.close();
-            System.out.println("SessionFactory closed.");
-        }
-    }
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
-    private static SessionFactory buildSessionFactory() {
+    public static SessionFactory buildSessionFactory() {
         try {
 //Создание контейнера для всех сервисов Hibernate
             StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
@@ -43,6 +29,8 @@ public class SessionFactoryConfig {
                     .addAnnotatedClass(QuizCategory.class)
                     .addAnnotatedClass(Quiz.class)
                     .addAnnotatedClass(PassQuiz.class)
+                    .addAnnotatedClass(LoginAttempt.class)
+                    .addAnnotatedClass(OnlineUser.class)
                     .getMetadataBuilder()
                     .build();
 
@@ -52,6 +40,13 @@ public class SessionFactoryConfig {
             System.err.println("Initial SessionFactory creation failed: " + ex.getMessage());
             ex.printStackTrace();
             throw new ExceptionInInitializerError(ex);
+        }
+    }
+
+    public static void shutdown() {
+        if (sessionFactory != null && !sessionFactory.isClosed()) {
+            sessionFactory.close();
+            System.out.println("SessionFactory closed.");
         }
     }
 }

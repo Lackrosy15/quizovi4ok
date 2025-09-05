@@ -7,8 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
-import quizovichok.entityes.Quiz;
-import quizovichok.entityes.QuizParameters;
+import quizovichok.entities.Quiz;
+import quizovichok.entities.QuizParameters;
 import quizovichok.service.*;
 import quizovichok.utils.ParametersExtractor;
 
@@ -35,7 +35,7 @@ public class QuizServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         List<Quiz> quizzes = quizService.findAllQuizzes();
         req.getServletContext().setAttribute("quizzes", quizzes);
-        req.getServletContext().setAttribute("onlineUsers", authenticateService.getOnlineUsersMap());
+        req.getServletContext().setAttribute("onlineUsers", authenticateService.getOnlineUsers());
         req.getRequestDispatcher("/quizzes.jsp").forward(req, resp);
     }
 

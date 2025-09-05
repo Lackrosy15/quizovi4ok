@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="quizovichok.entityes.Roles"%>
+<%@ page import="quizovichok.entities.Roles"%>
 
 <aside class="sidebar">
     <div class="logo">
@@ -68,8 +68,8 @@
     <br>
     <div class="online-users">
         <p><b>Пользователи онлайн <span>&#127759</span></b></p>
-        <c:forEach var="user" items="${onlineUsers}">
-            <p>${user.getValue()}</p>
+        <c:forEach var="onlineuser" items="${onlineUsers}">
+            <p>${onlineuser.getName()}</p>
         </c:forEach>
     </div>
     <div class="sidebar-footer">

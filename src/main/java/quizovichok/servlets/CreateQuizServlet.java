@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import quizovichok.entityes.QuizCategory;
+import quizovichok.entities.QuizCategory;
 import quizovichok.service.QuizService;
 import quizovichok.utils.ParametersExtractor;
 

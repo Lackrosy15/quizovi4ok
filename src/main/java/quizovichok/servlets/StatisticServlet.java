@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import quizovichok.entityes.PassQuiz;
+import quizovichok.entities.PassQuiz;
 import quizovichok.service.QuizService;
 
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class StatisticServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<PassQuiz> passQuizzesList = quizService.findAllPassQuizzes();
+        List<PassQuiz> passQuizzesList = quizService.findAllPassQuizzesGroupingByQuizId();
         req.getServletContext().setAttribute("passQuizzesList", passQuizzesList);
         req.getRequestDispatcher("/admin/stats.jsp").forward(req, resp);
     }
